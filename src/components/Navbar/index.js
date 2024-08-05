@@ -23,7 +23,7 @@ function Navbar() {
             <div className="hidden md:flex space-x-4">
               <a href="/about" className="text-gray-700 hover:text-gray-500 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300">About</a>
               <a href="/services" className="text-gray-700 hover:text-gray-500 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300">Services</a>
-              <a href="/contact" className="text-gray-700 hover:text-gray-500 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300">Contact</a>
+              <a href="/login" className="text-gray-700 hover:text-gray-500 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300">Login</a>
             </div>
           </div>
           {/* Mobile Menu Button */}
