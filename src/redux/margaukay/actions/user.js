@@ -5,7 +5,7 @@ import Cookies from 'js-cookie';
 import axios from 'axios';
 
 //jwtDecode
-import jwtDecode from 'jwt-decode';
+import { jwtDecode } from 'jwt-decode';
 
 //types
 import * as types from '../types';
@@ -22,8 +22,8 @@ export const setUserDetails = (userDetails) => {
 
     Cookies.set('account', JSON.stringify(user));
     Cookies.set('authenticated', true);
-    Cookies.set('role', user.role);
-    Cookies.set('category', user.category);
+    // Cookies.set('role', user.role);
+    // Cookies.set('category', user.category);
 
     return {
         type: types.SET_USER_DETAILS,
@@ -40,21 +40,23 @@ export const loginFunction = (payload) => async (dispatch) => {
         console.log('RESPONSEEEE', res);
 
         if (success) {
-        const { token } = data;
-        const account = jwtDecode(token);
+            console.log('RESPONSEEEE', res);
+            const { token } = data;
+            const account = jwtDecode(token);
 
-        setAuthorizationHeader(token);
-        dispatch(setUserDetails(account));
+            setAuthorizationHeader(token);
+            dispatch(setUserDetails(account));
         }
 
         return res; // Return the response object in both success and error cases
 
     } catch (err) {
+        console.log('ERRORRRRRR', err);
         return dispatch({
         type: types.LOGIN_FAIL,
         payload: err.response.data.msg,
         });
-}
+    }
 };
 
 export const addUser = (payload) => async (dispatch) => {
@@ -91,7 +93,7 @@ export const userLogout = () => {
     Cookies.remove('role');
     Cookies.remove('authenticated');
     Cookies.remove('category');
-    window.location.replace('/home');
+    window.location.replace('/');
 
     // Router.push('/logout');
 };
